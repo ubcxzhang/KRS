@@ -1,0 +1,16 @@
+exportPattern("^[[:alpha:]]+")
+
+import(glmnet)
+import(rpart)
+import(MASS)
+import(e1071)
+import(class)
+
+importFrom("graphics", "abline", "plot")
+importFrom("stats", "coef", "fitted", "glm", "kmeans", "lm", "predict","quantile")
+importFrom("utils", "head")
+
+S3method(predict, cv.multiFit)
+S3method(predict, multiFit)
+S3method(predict, MTPS)
+S3method(predict, rs.multiFit)
