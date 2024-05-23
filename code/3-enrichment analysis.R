@@ -76,4 +76,4 @@ save(selectedgenexx1,selectedgenexx2,
 write.csv(selectedgenexx1,file = "result/csv files/xx1gene(up-down).csv")
 write.csv(selectedgenexx2,file = "result/csv files/xx2gene(up-down).csv")
 
-##NOTE: use the xx1gene(up-down).csv and xx2gene(up-down).csv on the string website to get the go and kegg result.
+##NOTE: use the xx1gene(up-down).csv and xx2gene(up-down).csv on the string website to get the go, kegg and PPI result.
