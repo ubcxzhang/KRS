@@ -11,7 +11,7 @@ We assume the user is running the script on R version **4.2.0** and has set up a
 ~~~
     [your_deirctory]  
 ~~~
-R codes are in the subdirectory directory at **code** 
+R codes are in the subdirectory directory at **code**. 
 ~~~
     [your_deirctory]/code  
 ~~~
@@ -20,15 +20,15 @@ All numerical results saved during the code execution, which are used to produce
     [your_deirctory]/result 
 ~~~
 
-all the graphs in the paper are in the subdirectory directory at **figure** 
+all the graphs in the paper are in the subdirectory directory at **figure**. 
 ~~~
     [your_deirctory]/figure  
 ~~~
-the supplementary figure in the paper are in the subdirectory directory at **supplementary figure** 
+the supplementary figure in the paper is in the subdirectory directory at **supplementary figure**. 
 ~~~
     [your_deirctory]/supplementary figure  
 ~~~
-all the **raw datasets** from CCLE and GDSC are in the subdirectory directory at **data** 
+all the **raw datasets** from CCLE and GDSC are in the subdirectory directory at **data**. 
 ~~~
     [your_deirctory]/data  
 ~~~
@@ -46,15 +46,15 @@ all the **raw datasets** from CCLE and GDSC are in the subdirectory directory at
 
     ├── result
     │ 	 ├── csv files
-    │ 	 │ 	 ├── ccle.csv		    # cmap analysis result from pubchem websit
+    │ 	 │ 	 ├── ccle.csv		    # cmap analysis result from PubChem website
     │ 	 │ 	 ├── gdsc.csv		    # cmap analysis result from pubchem websit
-    │ 	 │ 	 ├── xx1gene(up-down).csv		    # geneselected gene using to do cmap analysis
-    │ 	 │ 	 └── xx2gene(up-down).csv		    # geneselected gene using to do cmap analysis 
+    │ 	 │ 	 ├── xx1gene(up-down).csv		    # geneselected gene using to do Cmap analysis
+    │ 	 │ 	 └── xx2gene(up-down).csv		    # geneselected gene using to do Cmap analysis 
     │ 	 └── rda files
     │ 	     ├── bias.abs.GDSCtrain.rda		    # mse and bias result of 5 models
-    │ 	     ├── drug7_gene1067.rda		    # preprocessed data for modeling
+    │ 	     ├── drug7_gene1067.rda		    # preprocessed data for modelling
     │ 	     ├── enrithmentplot.rda		    # result of the enrichment analysis from string website
-    │ 	     └── selectedgene.rda		    # result of gene selection using to do enrichment analysis on the string website
+    │ 	     └── selectedgene.rda		    # result of gene selection used to do enrichment analysis on the string website
 
 </details>
 <details><summary>figure</summary>
