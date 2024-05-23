@@ -172,9 +172,9 @@ In addition to the reproducible code, we also provided the updated MTPS package 
 ---
 ## Notice
 
-Then, the GO analysis, KEGG analysis and PPI network were performed using **[your_directory]/result/csv files/xx1gene(up-down).csv** and **[your_directory]/result/csv files/xx2gene(up-down).csv** on String <https://string-db.org/>. Results were saved in **[your_directory]/result/rda files/enrichment plot.rda**. 
+Then, the GO analysis, KEGG analysis and PPI network were performed using `[your_directory]/result/csv files/xx1gene(up-down).csv` and `[your_directory]/result/csv files/xx2gene(up-down).csv` on String (<https://string-db.org/>). Results were saved in `[your_directory]/result/rda files/enrichment plot.rda`. 
 
-Cmap analysis was performed on L1000 analysis platform using the same csv files. Results were saved in **[your_directory]/result/csv files/ccle.csv** and **[your_directory]/result/csv files/gdsc.csv**.
+Cmap analysis was performed on L1000 analysis platform using the same csv files. Results were saved in `[your_directory]/result/csv files/ccle.csv` and `[your_directory]/result/csv files/gdsc.csv`.
 
 ---
 
