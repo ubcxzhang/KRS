@@ -129,6 +129,8 @@ all the **raw datasets** from CCLE and GDSC are in the subdirectory directory at
 ---
 ## Notice
 
+In addition to the reproducible code, we also provided the updated MTPS package for users who needed it. It is available in `KRS/updated MTPS package`.
+
 ---
 ## Before you start
 
