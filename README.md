@@ -128,10 +128,11 @@ all the **raw datasets** from CCLE and GDSC are in the subdirectory directory at
 ---
 ## Notice
 ---
-## Before you start\\
-1. decide the path of [your_directory] to replicate our results;\\
-2. create the subdirectories **code**, **data**, **figure**, **result**, **supplementary result** at [your_directory]；\\
-3. allocate all relevant files into each subdirectory. Folders should look like the figure below:\\
+## Before you start
+
+1. decide the path of [your_directory] to replicate our results;
+2. create the subdirectories **code**, **data**, **figure**, **result**, **supplementary result** at [your_directory]；
+3. allocate all relevant files into each subdirectory. Folders should look like the figure below:
 
 ![image](https://github.com/ubcxzhang/KRS/illustration.png)
 
