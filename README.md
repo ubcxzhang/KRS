@@ -36,10 +36,10 @@ all the **raw datasets** from CCLE and GDSC are in the subdirectory directory at
 <details><summary>code</summary>
 
     ├── code  
-    │    ├── 1-data_cleaning.R		    # clean the raw data 
-    │ 	 ├── 2-models.R		    # 5 different models
-    │ 	 ├── 3-enrichment analysis.R		    # enrichment analysis
-    │ 	 └── 4-plot.R		    # The graphs of the main file and additional files		
+    │   ├── 1-data_cleaning.R		    # clean the raw data 
+    │   ├── 2-models.R		    # 5 different models
+    │   ├── 3-enrichment analysis.R		    # enrichment analysis
+    │   └── 4-plot.R		    # The graphs of the main file and additional files		
     
 </details>
 <details><summary>result</summary>
