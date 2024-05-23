@@ -56,9 +56,10 @@ all the **raw datasets** from CCLE and GDSC are in the subdirectory directory at
     │ 	     ├── enrithmentplot.rda		    # result of the enrichment analysis from string website
     │ 	     └── selectedgene.rda		    # result of gene selection using to do enrichment analysis on the string website
 
+</details>
 <details><summary>figure</summary>
 
-    ├── figure    
+    ├──  figure  
     │ 	 ├── cmap.png
     │ 	 ├── enrichment analysis.png
     │ 	 ├── hubgene.png
