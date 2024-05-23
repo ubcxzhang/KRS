@@ -46,14 +46,14 @@ all the **raw datasets** from CCLE and GDSC are in the subdirectory directory at
 
     ├── result
     │ 	 ├── csv files
-    │ 	 │ 	 ├── ccle.csv		    # cmap analysis result from PubChem website
-    │ 	 │ 	 ├── gdsc.csv		    # cmap analysis result from pubchem websit
+    │ 	 │ 	 ├── ccle.csv		    # cmap analysis result from L1000 analysis platform 
+    │ 	 │ 	 ├── gdsc.csv		    # cmap analysis result from L1000 analysis platform
     │ 	 │ 	 ├── xx1gene(up-down).csv		    # geneselected gene using to do Cmap analysis
     │ 	 │ 	 └── xx2gene(up-down).csv		    # geneselected gene using to do Cmap analysis 
     │ 	 └── rda files
     │ 	     ├── bias.abs.GDSCtrain.rda		    # mse and bias result of 5 models
     │ 	     ├── drug7_gene1067.rda		    # preprocessed data for modelling
-    │ 	     ├── enrithmentplot.rda		    # result of the enrichment analysis from string website
+    │ 	     ├── enrichmentplot.rda		    # result of the enrichment analysis from string website
     │ 	     └── selectedgene.rda		    # result of gene selection used to do enrichment analysis on the string website
 
 </details>
@@ -135,7 +135,45 @@ all the **raw datasets** from CCLE and GDSC are in the subdirectory directory at
 1. decide the path of [your_directory] to replicate our results;
 2. create the subdirectories **code**, **data**, **figure**, **result**, **supplementary result** at [your_directory]；
 3. allocate all relevant files into each subdirectory. Folders should look like the figure below:
-
 ![image](https://github.com/ubcxzhang/KRS/blob/main/illustration.png?raw=true)
+4. Please run the files in the code folder in the following order: "1-data cleaning.R", "2-models.R", "3-enrichment analysis.R", "4-plot.R".
+---
+
+<details><summary>1-data cleaning.R</summary>
+- Read the raw data from `[your_directory]/data`;
+- Remove missing values;
+- Filter for overlapping drugs and genes between the two datasets;
+- The cleaned data was saved in `[your_directory]/result/rda files/drug7_gene1067.rda`.
+</details>
+
+<details><summary>2-models.R</summary>
+- Using the cleaned data, `[your_directory]/result/rda files/drug7_gene1067.rda`, five multi-task prediction models were established: RS, KRS, L21, KMTrace, and KBMTL. 
+- The mean squared error (MSE) of the predictions and the absolute difference in bias were stored in `[your_directory]/result/rda files/bias.abs.GDSCtrain.rda`.
+</details>
+
+<details><summary>3-enrichment analysis.R</summary>
+- Perform gene selection on the cleaned data, `[your_directory]/result/rda files/drug7_gene1067.rda`. 
+- The selected genes were stored in `[your_directory]/result/csv files/xx1gene(up-down).csv` and `[your_directory]/result/csv files/xx2gene(up-down).csv`.
+</details>
 
 ---
+## Notice
+
+Then, the GO analysis, KEGG analysis and PPI network were performed using **[your_directory]/result/csv files/xx1gene(up-down).csv** and **[your_directory]/result/csv files/xx2gene(up-down).csv** on String <https://string-db.org/>. Results were saved in **[your_directory]/result/rda files/enrichment plot.rda**. 
+Cmap analysis was performed on L1000 analysis platform using the same csv files, and the results were saved in **[your_directory]/result/csv files/ccle.csv** and **[your_directory]/result/csv files/gdsc.csv**.
+
+---
+
+<details><summary>4-plot.R</summary>
+- Main figure of the MSE was created using `[your_directory]/result/rda files/bias.abs.GDSCtrain.rda`. 
+- Main figure of the GO and KEGG were created using `[your_directory]/result/rda files/enrichmentplot.rda`.
+- Main figure of PPI was created using the Cytoscape.
+- Main figure of Cmap was created using `[your_directory]/result/csv files/ccle.csv` and `[your_directory]/result/csv files/gdsc.csv`.
+- A supplementary figure for the difference between absolute bias was created using `[your_directory]/result/rda files/bias.abs.GDSCtrain.rda`.
+       
+</details>
+
+
+
+
+
