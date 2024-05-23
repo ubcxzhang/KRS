@@ -182,9 +182,9 @@ Cmap analysis was performed on L1000 analysis platform using the same csv files.
     
 - Main figure of the MSE was created using `[your_directory]/result/rda files/bias.abs.GDSCtrain.rda`. 
     
-- Main figure of the GO and KEGG were created using `[your_directory]/result/rda files/enrichmentplot.rda`.
+- Main figure of the GO and KEGG analysis was created using `[your_directory]/result/rda files/enrichmentplot.rda`.
   
-- Main figure of PPI was created using the Cytoscape.
+- Main figure of PPI hub-gene network was created using the Cytoscape.
   
 - Main figure of Cmap was created using `[your_directory]/result/csv files/ccle.csv` and `[your_directory]/result/csv files/gdsc.csv`.
   
