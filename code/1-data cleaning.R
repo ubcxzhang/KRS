@@ -64,21 +64,21 @@ yy1 <- yy1[,c("X17.AAG" , "AEW541"  ,  "AZD0530",  "AZD6244"  ,"Nutlin.3" ,"PD.0
 yy2 <- yy2[,c("X17.AAG" , "GSK.1904529A" ,"Bosutinib" , "RDEA119"   , "Nutlin.3a"    ,"PD.0325901","Epothilone.B")]
 
 ##select overlapping genes from CCLE and GDSC
-index.gene1 <-  names(xx1) %in% names(xx2)
+index.gene1 <- names(xx1) %in% names(xx2)
 table(index.gene1)
 xxx1 <- xx1[,index.gene1]
-index.gene2 <-  names(xx2) %in% names(xx1)
+index.gene2 <- names(xx2) %in% names(xx1)
 table(index.gene2)
 xxx2 <- xx2[,index.gene2]
 
-xx1<-xxx1
-xx2.1<-xxx2 # keep the gene orders consistent
+xx1 <- xxx1
+xx2.1 <- xxx2 # keep the gene orders consistent
 xx2 <- xx2.1[, match(names(xx1), names(xx2.1))] # keep the gene orders consistent
 
-rw<-which(yy1==0) %% dim(yy1)[1] # Remove the samples where the drug reaction is meaningless
+rw <- which(yy1==0) %% dim(yy1)[1] # Remove the samples where the drug reaction is meaningless
 which(rw==0)
-yy1<-yy1[-rw,]
-xx1<-xx1[-rw,] # yy2 is ok
+yy1 <- yy1[-rw,]
+xx1 <- xx1[-rw,] # yy2 is ok
 save(xx1,xx2,yy1,yy2,file = "result/rda files/drug7_gene1067.rda")
 
 ###some checking
