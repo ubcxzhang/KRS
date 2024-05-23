@@ -138,7 +138,7 @@ In addition to the reproducible code, we also provided the updated MTPS package 
 2. create the subdirectories **code**, **data**, **figure**, **result**, **supplementary result** at [your_directory]；
 3. allocate all relevant files into each subdirectory. Folders should look like the figure below:
 ![image](https://github.com/ubcxzhang/KRS/blob/main/illustration.png?raw=true)
-4. Please run the files in the code folder in the following order: "1-data cleaning.R", "2-models.R", "3-enrichment analysis.R", "4-plot.R".
+4. Please run the files in the code folder in the following order: `1-data cleaning.R`, `2-models.R`, `3-enrichment analysis.R`, `4-plot.R`.
 ---
 
 <details><summary>1-data cleaning.R</summary>
