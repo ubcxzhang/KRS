@@ -15,7 +15,7 @@ R codes are in the subdirectory directory at **code**
 ~~~
     [your_deirctory]/code  
 ~~~
-All numerical results saved during the code execution, which are used to produce graphs, are located in the **result** or **result**.
+All numerical results saved during the code execution, which are used to produce graphs, are located in the **result**.
 ~~~
     [your_deirctory]/result 
 ~~~
