@@ -140,27 +140,36 @@ all the **raw datasets** from CCLE and GDSC are in the subdirectory directory at
 ---
 
 <details><summary>1-data cleaning.R</summary>
-- Read the raw data from `[your_directory]/data`;
-- Remove missing values;
-- Filter for overlapping drugs and genes between the two datasets;
+- Read the raw data from `[your_directory]/data`.
+    
+- Remove missing values.
+  
+- Filter for overlapping drugs and genes between the two datasets.
+    
 - The cleaned data was saved in `[your_directory]/result/rda files/drug7_gene1067.rda`.
+  
 </details>
 
 <details><summary>2-models.R</summary>
 - Using the cleaned data, `[your_directory]/result/rda files/drug7_gene1067.rda`, five multi-task prediction models were established: RS, KRS, L21, KMTrace, and KBMTL. 
+    
 - The mean squared error (MSE) of the predictions and the absolute difference in bias were stored in `[your_directory]/result/rda files/bias.abs.GDSCtrain.rda`.
+  
 </details>
 
 <details><summary>3-enrichment analysis.R</summary>
 - Perform gene selection on the cleaned data, `[your_directory]/result/rda files/drug7_gene1067.rda`. 
+    
 - The selected genes were stored in `[your_directory]/result/csv files/xx1gene(up-down).csv` and `[your_directory]/result/csv files/xx2gene(up-down).csv`.
+  
 </details>
 
 ---
 ## Notice
 
 Then, the GO analysis, KEGG analysis and PPI network were performed using **[your_directory]/result/csv files/xx1gene(up-down).csv** and **[your_directory]/result/csv files/xx2gene(up-down).csv** on String <https://string-db.org/>. Results were saved in **[your_directory]/result/rda files/enrichment plot.rda**. 
-Cmap analysis was performed on L1000 analysis platform using the same csv files, and the results were saved in **[your_directory]/result/csv files/ccle.csv** and **[your_directory]/result/csv files/gdsc.csv**.
+
+Cmap analysis was performed on L1000 analysis platform using the same csv files. Results were saved in **[your_directory]/result/csv files/ccle.csv** and **[your_directory]/result/csv files/gdsc.csv**.
 
 ---
 
