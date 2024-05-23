@@ -14,44 +14,44 @@ dat <- c("CCLE","GDSC")
 dd <- 2
 
 if(dd==1){
-  x.train<-as.matrix(xx1) # if dd==1 indicates CCLE xx1 is training set
-  y.train<-as.matrix(log(yy1))
-  x.test<-as.matrix(xx2) # GDSC
-  y.test<-as.matrix(yy2)
+  x.train <- as.matrix(xx1) # if dd==1 indicates CCLE xx1 is training set
+  y.train <- as.matrix(log(yy1))
+  x.test <- as.matrix(xx2) # GDSC
+  y.test <- as.matrix(yy2)
 }else{
-  x.train<-as.matrix(xx2)
-  y.train<-as.matrix(yy2)
-  x.test<-as.matrix(xx1)
-  y.test<-as.matrix(log(yy1))
+  x.train <- as.matrix(xx2)
+  y.train <- as.matrix(yy2)
+  x.test <- as.matrix(xx1)
+  y.test <- as.matrix(log(yy1))
 }
 
 ###normalize-train & test data
 for (ii in 1:dim(y.test)[2]) {
-  ytestup<-y.test[,ii]-min(y.test[,ii])
-  ytestdown<-max(y.test[,ii])-min(y.test[,ii])
-  y.test[,ii]<-ytestup/ytestdown
+  ytestup <- y.test[,ii]-min(y.test[,ii])
+  ytestdown <- max(y.test[,ii])-min(y.test[,ii])
+  y.test[,ii] <- ytestup/ytestdown
 }
 for (ii in 1:dim(y.train)[2]) {
-  ytestup<-y.train[,ii]-min(y.train[,ii])
-  ytestdown<-max(y.train[,ii])-min(y.train[,ii])
-  y.train[,ii]<-ytestup/ytestdown
+  ytestup <- y.train[,ii]-min(y.train[,ii])
+  ytestdown <- max(y.train[,ii])-min(y.train[,ii])
+  y.train[,ii] <- ytestup/ytestdown
 }
 
 ### transform x to kernelized x
-sigma.train<-mean(as.matrix(dist(x.train)))/sqrt(2)
-gamma.train<-1/(2*(sigma.train^2))
-kx.train<-exp(-gamma.train*as.matrix(dist(x.train))^2)
+sigma.train <- mean(as.matrix(dist(x.train)))/sqrt(2)
+gamma.train <- 1/(2*(sigma.train^2))
+kx.train <- exp(-gamma.train*as.matrix(dist(x.train))^2)
 
-k<-matrix(0,dim(x.test)[1],dim(x.train)[1])
+k <- matrix(0,dim(x.test)[1],dim(x.train)[1])
 for (i in 1:dim(x.test)[1]) { # i:the row number of test data
   for (j in 1:dim(x.train)[1]) { # j:the row number of the train data
-    k[i,j]<-sqrt(sum((x.test[i,]-x.train[j,])^2)) # RBF kernel function
+    k[i,j] <- sqrt(sum((x.test[i,]-x.train[j,])^2)) # RBF kernel function
     cat(paste0("i:", i,", j: ",j)) # process
   }
 }
-sigma.test<-mean(k)/sqrt(2)#can change
-gamma.test<-1/(2*(sigma.test^2))
-kx.test<-exp(-gamma.test*k^2)
+sigma.test <- mean(k)/sqrt(2)#can change
+gamma.test <- 1/(2*(sigma.test^2))
+kx.test <- exp(-gamma.test*k^2)
 
 
 
@@ -63,7 +63,7 @@ fit.rs <- MTPS(xmat = x.train, ymat = y.train, family = "gaussian",
                method.step2 = glmnet.lasso)
 
 pred.rs <- predict(fit.rs, x.test)
-mse.rs<-apply((pred.rs-y.test)^2,2, mean)
+mse.rs <- apply((pred.rs-y.test)^2,2, mean)
 mse.rs
 
 ####model2 krs####
@@ -73,7 +73,7 @@ fit.krs <- MTPS(xmat = kx.train, ymat = y.train, family = "gaussian",
                 method.step1 = glmnet1,
                 method.step2 = glmnet.lasso) 
 pred.krs <- predict(fit.krs, kx.test)
-mse.krs<-apply((pred.krs-y.test)^2,2, mean)
+mse.krs <- apply((pred.krs-y.test)^2,2, mean)
 mse.krs
 
 ### When users utilize our latest mtps package, they can directly add the option "kernel = TRUE"
@@ -86,65 +86,65 @@ mse.krs
 
 ####model3 l21####
 set.seed(1)
-y.train.list<-list()
-y.test.list<-list()
-x.train.list<-list()
-x.test.list<-list()
+y.train.list <- list()
+y.test.list <- list()
+x.train.list <- list()
+x.test.list <- list()
 
 for (i in 1:ncol(y.test)) {
-  y.train.list[[i]]<-y.train[,i]
-  x.train.list[[i]]<-x.train
-  y.test.list[[i]]<-y.test[,i]
-  x.test.list[[i]]<-x.test
+  y.train.list[[i]] <- y.train[,i]
+  x.train.list[[i]] <- x.train
+  y.test.list[[i]] <- y.test[,i]
+  x.test.list[[i]] <- x.test
 }
 
-model<-cvMTL(x.train.list, y.train.list, type = "Regression", Regularization = "L21",
+model <- cvMTL(x.train.list, y.train.list, type = "Regression", Regularization = "L21",
              Lam1_seq = seq(0.01, 10, 0.1), Lam2 = 0, G = NULL, k = 2,
              opts = list(init = 0, tol = 10^-3, maxIter = 1000), stratify = FALSE,
              nfolds = 5, ncores = 2, parallel = FALSE)
-model1<-MTL(x.train.list, y.train.list, type = "Regression", Regularization = "L21",
+model1 <- MTL(x.train.list, y.train.list, type = "Regression", Regularization = "L21",
             Lam1 = 0.01, Lam1_seq = NULL, Lam2 = 0, opts = list(init = 0, tol
                                                                 = 10^-3, maxIter = 1000), G = NULL, k = 2)
 
-pred.L21<-predict(model1,x.test.list)
-yhat.L21<-matrix(NA,nrow = dim(y.test)[1],dim(y.test)[2])
+pred.L21 <- predict(model1,x.test.list)
+yhat.L21 <- matrix(NA,nrow = dim(y.test)[1],dim(y.test)[2])
 for (i in 1:ncol(y.test)) {
-  yhat.L21[,i]<-pred.L21[[i]] 
+  yhat.L21[,i] <- pred.L21[[i]] 
 }
 
-mse.L21<-apply((yhat.L21-y.test)^2,2, mean)
+mse.L21 <- apply((yhat.L21-y.test)^2,2, mean)
 mse.L21
 median(mse.L21)
 
 ####model4 kmtrace####
 set.seed(1)
-y.train.list<-list()
-y.test.list<-list()
-x.train.list<-list()
-x.test.list<-list()
+y.train.list <- list()
+y.test.list <- list()
+x.train.list <- list()
+x.test.list <- list()
 
 for (i in 1:ncol(y.test)) {
-  y.train.list[[i]]<-y.train[,i]
-  x.train.list[[i]]<-x.train
-  y.test.list[[i]]<-y.test[,i]
-  x.test.list[[i]]<-x.test
+  y.train.list[[i]] <- y.train[,i]
+  x.train.list[[i]] <- x.train
+  y.test.list[[i]] <- y.test[,i]
+  x.test.list[[i]] <- x.test
 }
 
-model<-cvMTL(x.train.list, y.train.list, type = "Regression", Regularization = "Trace",
+model <- cvMTL(x.train.list, y.train.list, type = "Regression", Regularization = "Trace",
              Lam1_seq = seq(0.01, 10, 0.1), Lam2 = 0, G = NULL, k = 2,
              opts = list(init = 0, tol = 10^-3, maxIter = 1000), stratify = FALSE,
              nfolds = 5, ncores = 2, parallel = FALSE)
 
 
-model1<-MTL(x.train.list, y.train.list, type = "Regression", Regularization = "Trace",
+model1 <- MTL(x.train.list, y.train.list, type = "Regression", Regularization = "Trace",
             Lam1 = model$Lam1.min, Lam1_seq = NULL, Lam2 = 0, opts = list(init = 0, tol
                                                                           = 10^-3, maxIter = 1000), G = NULL, k = 2)
-pred.trace<-predict(model1,x.test.list)
-yhat.trace<-matrix(NA,nrow = dim(y.test)[1],dim(y.test)[2])
+pred.trace <- predict(model1,x.test.list)
+yhat.trace <- matrix(NA,nrow = dim(y.test)[1],dim(y.test)[2])
 for (i in 1:ncol(y.test)) {
-  yhat.trace[,i]<-pred.trace[[i]] 
+  yhat.trace[,i] <- pred.trace[[i]] 
 }
-mse.trace<-apply((yhat.trace-y.test)^2,2, mean)
+mse.trace <- apply((yhat.trace-y.test)^2,2, mean)
 mse.trace  
 median(mse.trace)
 
@@ -248,31 +248,31 @@ parameters$sigma_h <- 0.1
 parameters$sigma_w <- 1.0
 
 ####predicting section
-k<-matrix(0,dim(x.train)[1],dim(x.test)[1])
+k <- matrix(0,dim(x.train)[1],dim(x.test)[1])
 for (i in 1:dim(x.train)[1]) {
   for (j in 1:dim(x.test)[1]) {
-    k[i,j]<-sqrt(sum((x.test[j,]-x.train[i,])^2))
+    k[i,j] <- sqrt(sum((x.test[j,]-x.train[i,])^2))
   }
 }
 
-sigma.test<-mean(k)/sqrt(2)
-gamma.test<-1/(2*(sigma.test^2))
-kx.test<-exp(-gamma.test*k^2)
+sigma.test <- mean(k)/sqrt(2)
+gamma.test <- 1/(2*(sigma.test^2))
+kx.test <- exp(-gamma.test*k^2)
 
-sigma.train<-mean(dist(x.train))/sqrt(2)
-gamma.train<-1/(2*(sigma.train^2))
-kx.train<-exp(-gamma.train*as.matrix(dist(x.train))^2)
+sigma.train <- mean(dist(x.train))/sqrt(2)
+gamma.train <- 1/(2*(sigma.train^2))
+kx.train <- exp(-gamma.train*as.matrix(dist(x.train))^2)
 
 # model
 state <- kbmtl_semisupervised_regression_variational_train(kx.train, y.train, parameters)
 # predict
 pred.kbmtl <- kbmtl_semisupervised_regression_variational_test(kx.test, state)
-yhat3<-pred.kbmtl$Y$mu
-mse.kbmtl<-apply((yhat3-y.test)^2, 2 ,mean)
+yhat3 <-pred.kbmtl$Y$mu
+mse.kbmtl <-apply((yhat3-y.test)^2, 2 ,mean)
 mse.kbmtl
 
 ####summary mse and absolute bias####
-mse5<-cbind(mse.rs,mse.krs,mse.L21,mse.trace,mse.kbmtl)
+mse5 <- cbind(mse.rs,mse.krs,mse.L21,mse.trace,mse.kbmtl)
 
 rsbias <- melt(abs(pred.krs-y.test)-abs(pred.rs-y.test))
 l21bias <- melt(abs(pred.krs-y.test)-abs(yhat.L21-y.test))
