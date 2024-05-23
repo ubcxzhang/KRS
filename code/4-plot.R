@@ -79,7 +79,7 @@ ggsave(file_name, plot = p, width = 10, height = 6)
 ####go & kegg####
 rm(list = ls())
 setwd("/Users/caoxiaowen/Desktop/KRS-code-data/")
-load(paste0("result/rda files/enrithmentplot.rda"))
+load(paste0("result/rda files/enrichmentplot.rda"))
 ls() #convert the results of kegg & go into rda file
 library(RColorBrewer)
 library(ggplot2)
