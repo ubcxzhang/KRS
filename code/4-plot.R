@@ -1,7 +1,7 @@
 ####plot####
 rm(list = ls())
 dat <- c("CCLE","GDSC")
-dd<-2
+dd <- 2
 setwd("/Users/caoxiaowen/Desktop/KRS-code-data/")
 load(paste0("result/rda files/bias.abs.",dat[dd],"train.rda"))
 
@@ -11,12 +11,12 @@ library(ggsignif)
 library(ggplot2)
 
 melt(mse5)
-mse<-melt(mse5)
+mse <- melt(mse5)
 table(mse$Var2)
-mse$Var2<-as.factor(c(rep("RS",7),rep("KRS",7),rep("L21",7),rep("KMTrace",7),rep("KBMTL",7)))
-mse$Var2<-factor(mse$Var2,levels=c("KBMTL","KMTrace","L21","RS","KRS"))
+mse$Var2 <- as.factor(c(rep("RS",7),rep("KRS",7),rep("L21",7),rep("KMTrace",7),rep("KBMTL",7)))
+mse$Var2 <- factor(mse$Var2,levels=c("KBMTL","KMTrace","L21","RS","KRS"))
 
-mseplot<-ggplot(mse,aes(x=Var2,y=value))+geom_boxplot( )+geom_jitter(width = 0.05)+  labs(x="",y="MSE"
+mseplot <- ggplot(mse,aes(x=Var2,y=value))+geom_boxplot( )+geom_jitter(width = 0.05)+  labs(x="",y="MSE"
 )+geom_hline(yintercept = median(mse[,3][which(mse$Var2=="KRS")]),color = "steelblue")+
   theme_bw()+
   theme(panel.grid.major=element_line(size = 0.25, linetype = 'solid',
@@ -85,19 +85,19 @@ library(RColorBrewer)
 library(ggplot2)
 library(cowplot)
 library(grid)
-go1$dataset<-rep("GDSC",length(go1$term.description))
-go2$dataset<-rep("CCLE",length(go2$term.description))
+go1$dataset <- rep("GDSC",length(go1$term.description))
+go2$dataset <- rep("CCLE",length(go2$term.description))
 
-go<-rbind(go2[1:20,],go1[1:20,])
+go <- rbind(go2[1:20,],go1[1:20,])
 class(go$dataset)
 go$dataset<-as.factor(go$dataset)
 class(go$term.description)
 class(go$observed.gene.count)
 class(go$false.discovery.rate)
 summary(go$false.discovery.rate)
-termrank<-go$term.description[order(go$false.discovery.rate)]
+termrank <- go$term.description[order(go$false.discovery.rate)]
 go$term.description <- factor(go$term.description,levels=unique(termrank))
-goplot<-ggplot(go, aes(x =dataset,y = term.description,fill=false.discovery.rate,color=false.discovery.rate))+ geom_point(aes(size=observed.gene.count),alpha=0.8)+
+goplot <- ggplot(go, aes(x =dataset,y = term.description,fill=false.discovery.rate,color=false.discovery.rate))+ geom_point(aes(size=observed.gene.count),alpha=0.8)+
   labs(x="",title="GO Analysis")+
   #+facet_wrap(~dataset)
   theme_bw()+theme(panel.grid.major=element_line(size = 0.25, linetype = 'solid',
@@ -107,19 +107,19 @@ goplot<-ggplot(go, aes(x =dataset,y = term.description,fill=false.discovery.rate
         ,axis.title.y = element_blank(),#+ggtitle("GO Analysis")
         plot.title = element_text(size = 15,color="black",hjust = 0.5,face = 'bold'))
 
-kegg2$dataset<-rep("GDSC",length(kegg2$term.description))
-kegg1$dataset<-rep("CCLE",length(kegg1$term.description))
+kegg2$dataset <- rep("GDSC",length(kegg2$term.description))
+kegg1$dataset <- rep("CCLE",length(kegg1$term.description))
 
-kegg<-rbind(kegg1[1:20,],kegg2[1:20,])
+kegg <- rbind(kegg1[1:20,],kegg2[1:20,])
 class(kegg$dataset)
-kegg$dataset<-as.factor(kegg$dataset)
+kegg$dataset <- as.factor(kegg$dataset)
 class(kegg$term.description)
 class(kegg$observed.gene.count)
 class(kegg$false.discovery.rate)
 summary(kegg$false.discovery.rate)
-termrank<-kegg$term.description[order(kegg$false.discovery.rate)]
+termrank <- kegg$term.description[order(kegg$false.discovery.rate)]
 kegg$term.description <- factor(kegg$term.description,levels=unique(termrank))
-keggplot<-ggplot(kegg, aes(x =dataset,y = term.description,fill=false.discovery.rate,color=false.discovery.rate))+ geom_point(aes(size=observed.gene.count),alpha=0.8)+
+keggplot < -ggplot(kegg, aes(x =dataset,y = term.description,fill=false.discovery.rate,color=false.discovery.rate))+ geom_point(aes(size=observed.gene.count),alpha=0.8)+
   labs(x="",title="KEGG Analysis")+
   #+facet_wrap(~dataset)
   theme_bw()+theme(panel.grid.major=element_line(size = 0.25, linetype = 'solid',
@@ -147,10 +147,10 @@ library(readr)
 library(gridExtra)
 library(grid)
 data <- read.csv("result/csv files/ccle.csv")
-data$MOA<-as.factor(data$MOA)
-data$Name<-as.factor(data$Name)
+data$MOA <- as.factor(data$MOA)
+data$Name <- as.factor(data$Name)
 
-A=ggplot(data,aes(x=Name,y=MOA,colour=Score)) +
+A <- ggplot(data,aes(x=Name,y=MOA,colour=Score)) +
   geom_point(size=6) +
   labs(x="Compound",y="MOA",title= "connectivity map for CCLE")+
   theme(plot.title=element_text(size=15,colour="black",face = 'bold', hjust=0.5))+
@@ -162,9 +162,9 @@ A=ggplot(data,aes(x=Name,y=MOA,colour=Score)) +
   theme(panel.grid=element_line(color = "grey80",size = 0.5), panel.background = element_blank())
 
 data <- read.csv("result/csv files/gdsc.csv")
-data$MOA<-as.factor(data$MOA)
-data$Name<-as.factor(data$Name)
-B=ggplot(data,aes(x=Name,y=MOA,colour=Score)) +
+data$MOA <- as.factor(data$MOA)
+data$Name <- as.factor(data$Name)
+B <- ggplot(data,aes(x=Name,y=MOA,colour=Score)) +
   geom_point(size=6) +
   labs(x="Compound",y="MOA",title= "connectivity map for GDSC")+
   theme(plot.title=element_text(size=15,colour="black", hjust=0.5,face = 'bold'))+
