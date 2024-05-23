@@ -134,6 +134,6 @@ all the **raw datasets** from CCLE and GDSC are in the subdirectory directory at
 2. create the subdirectories **code**, **data**, **figure**, **result**, **supplementary result** at [your_directory]；
 3. allocate all relevant files into each subdirectory. Folders should look like the figure below:
 
-![image](https://github.com/ubcxzhang/KRS/illustration.png)
+![image](https://github.com/ubcxzhang/KRS/blob/main/illustration.png?raw=true)
 
 ---
